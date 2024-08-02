@@ -20,7 +20,7 @@ function criajogodavelha(){
                 if (el.classList.contains('casa')) {
                     contador++;
                     this.marcacao(el);
-                    this.verificaLinha();
+                    this.verificaLinha(el);
                 }
                 
                 if (el.classList.contains('btn-clear')) {
@@ -39,25 +39,29 @@ function criajogodavelha(){
 
         marcacao(el) {
             if (contador % 2 === 0) {
-                xs.push(el[1])
-                console.log(`el 1: ${el[1]} | el 2: ${el[2]}`)
+                xs.push([el.classList[1], el.classList[2]])
+                // console.log(`el 1: ${el.classList[1]} | el 2: ${el[2]}`)
                 el.classList.remove("casa")
-                el.classList.add("ocupado")
-                console.log(el.classList)
+                el.classList.add("ocupado", "o")
+                el.innerHTML = "O";
+                // console.log(el.classList)
             } else {
                 // console.log(el[1].match(/\d/g))
-                os.push(el[1]);
-                console.log(`el 1: ${el[1]} | el 2: ${el[2]}`)
+                os.push([el.classList[1], el.classList[2]]);
+                // console.log(`el 1: ${el.classList[1]} | el 2: ${el.classList[2]}`)
                 el.classList.remove("casa")
-                el.classList.add("ocupado")
-                console.log(el.classList)
+                el.classList.add("ocupado", "x")
+                // console.log(el.classList)
+                el.innerHTML = "X";
             }
 
             console.log(xs +" | "+ os)
         },
 
         verificaLinha() {
+            // if(xs.contains()){
 
+            // }
         }
     }
 }

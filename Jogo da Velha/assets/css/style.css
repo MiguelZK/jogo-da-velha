@@ -35,6 +35,7 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   aspect-ratio: 1 / 1;
+  text-align: center;
   /* color: #ffffff00; */
   ;
 }
@@ -49,6 +50,22 @@ h1 {
 
 .l1, .l2 {
   border-bottom: var(--espessura-linha) solid #888;
+}
+
+.ocupado {
+  font-size: 8rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.x {
+  color: green;
+}
+
+.o {
+  color: rgb(160, 0, 0);
 }
 
 form button:hover {
