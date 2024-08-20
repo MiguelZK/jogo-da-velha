@@ -1,11 +1,12 @@
-function criajogodavelha(){
-    
+function criajogodavelha() {
+
     const xs = [];
     const os = [];
     let contador = 0;
+    let jogador;
 
     return {
-        
+
         iniciaJogo() {
             this.jogada();
         },
@@ -16,53 +17,39 @@ function criajogodavelha(){
                 const el = e.target;// Como arrow function, o "this" permanece a calculadora
                 // }.bind(this));   // Se usasse "function" normal, usava esse "bind(this)",
                 //pra manter o this com as propriedades da calculadora.
-                
+
                 if (el.classList.contains('casa')) {
                     contador++;
+                    console.log(`Contador: ${contador}`);
+                    if (contador % 2 === 0) jogador = xs;
+                    else jogador = os;
                     this.marcacao(el);
-                    if (contador > 2) this.verificaLinha(marcacoes);
-                }
-                
-                if (el.classList.contains('btn-clear')) {
-                    this.clearDisplay();
-                }
-                
-                if (el.classList.contains('btn-del')) {
-                    this.apagaUm();
-                }
-                
-                if (el.classList.contains('btn-eq')) {
-                    this.realizaConta();
+
+                    if (contador > 2) this.verificaLinha();
                 }
             });
         },
 
         marcacao(el) {
-            if (contador % 2 === 0) {
-                xs.push([el.classList[1], el.classList[2]])
-                // console.log(`el 1: ${el.classList[1]} | el 2: ${el[2]}`)
-                el.classList.remove("casa")
-                el.classList.add("ocupado", "o")
-                el.innerHTML = "O";
-                // console.log(el.classList)
-            } else {
-                // console.log(el[1].match(/\d/g))
-                os.push([el.classList[1], el.classList[2]]);
-                // console.log(`el 1: ${el.classList[1]} | el 2: ${el.classList[2]}`)
-                el.classList.remove("casa")
-                el.classList.add("ocupado", "x")
-                // console.log(el.classList)
+            el.classList.remove("casa");
+            jogador.push([el.classList[1], el.classList[2]])
+            if (jogador == xs) {
                 el.innerHTML = "X";
+                el.classList.add("ocupado", "x");
             }
-
-            console.log(xs +" | "+ os)
+            else {
+                el.innerHTML = "O";
+                el.classList.add("ocupado", "o");
+            }
+            console.log(xs + " | " + os)
         },
 
-        verificaLinha(marcacoes) {
-            let map = a.reduce(function(obj, b) {
+        verificaLinha() {
+            let map = jogador.reduce(function (obj, b) {
                 obj[b] = ++obj[b] || 1;
                 return obj;
-              }, {});
+            }, {});
+            console.log(map);
         }
     }
 }
