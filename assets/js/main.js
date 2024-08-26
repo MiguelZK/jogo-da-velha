@@ -32,7 +32,7 @@ function criajogodavelha() {
 
         marcacao(el) {
             el.classList.remove("casa");
-            jogador.push([el.classList[1], el.classList[2]])
+            jogador.push([el.classList[0], el.classList[1]])
             if (jogador == xs) {
                 el.innerHTML = "X";
                 el.classList.add("ocupado", "x");
