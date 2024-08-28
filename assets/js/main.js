@@ -21,18 +21,27 @@ function criajogodavelha() {
                 if (el.classList.contains('casa')) {
                     contador++;
                     console.log(`Contador: ${contador}`);
-                    if (contador % 2 === 0) jogador = xs;
+                    if (contador % 2 === 1) jogador = xs;
                     else jogador = os;
                     this.marcacao(el);
 
-                    if (contador > 2) this.verificaLinha();
+                    if (contador > 4 && this.verificaLinha()) {
+                        console.log(`Linha ou coluna ${this.verificaLinha()} fechou!`);
+                        const vencedor = document.getElementsByClassName(this.verificaLinha());
+                        for (let casa of vencedor) {
+                            casa.classList.add("fechou");
+                            // casa.appendChild(brilho)
+                        }
+                    } else {
+                        console.log(`Nada feito, merrrrmão!`)
+                    }
                 }
             });
         },
 
         marcacao(el) {
             el.classList.remove("casa");
-            jogador.push([el.classList[0], el.classList[1]])
+            for (let i of el.classList) jogador.push(i)
             if (jogador == xs) {
                 el.innerHTML = "X";
                 el.classList.add("ocupado", "x");
@@ -41,7 +50,7 @@ function criajogodavelha() {
                 el.innerHTML = "O";
                 el.classList.add("ocupado", "o");
             }
-            console.log(xs + " | " + os)
+            console.log("xs " + xs + " | os " + os)
         },
 
         verificaLinha() {
@@ -49,6 +58,13 @@ function criajogodavelha() {
                 obj[b] = ++obj[b] || 1;
                 return obj;
             }, {});
+
+            for (let cld in map) {
+                // console.log(map[cl])
+                if (map[cld] === 3) {
+                    return cld;
+                }
+            }
             console.log(map);
         }
     }
